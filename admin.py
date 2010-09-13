@@ -1,7 +1,11 @@
 from django.contrib import admin
-from models import Category
+from models import Category, Entry
 
 class CategoryAdmin(admin.ModelAdmin):
     prepopulated_fields = {'slug': ['title']}
 
+class EntryAdmin(admin.ModelAdmin):
+    pass
+
 admin.site.register(Category, CategoryAdmin)
+admin.site.register(Entry, EntryAdmin)
