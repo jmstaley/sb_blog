@@ -25,7 +25,7 @@ class Category(models.Model):
         from sb_blog.models import Entry
         return self.entry_set.filter(status=Entry.LIVE_STATUS)
 
-class LiveEntryManager(models.Manger):
+class LiveEntryManager(models.Manager):
     def get_query_set(self):
         return super(LiveEntryManager, self).get_query_set().filter(\
             status=self.model.LIVE_STATUS)
