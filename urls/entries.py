@@ -7,7 +7,7 @@ entry_info_dict = {'queryset': Entry.live.all(),
 
 date_info_dict = {'queryset': Entry.live.all(),
                   'date_field': 'pub_date',
-                  'month_format': 'm'}
+                  'month_format': '%m'}
 
 urlpatterns = patterns('django.views.generic.date_based',
     (r'^$', 'archive_index', entry_info_dict, 'blog_entry_archive_index'),

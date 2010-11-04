@@ -2,28 +2,8 @@ import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from tagging.fields import TagField
+from tagging.models import Tag
 from markdown import markdown
-
-class Category(models.Model):
-    title = models.CharField(max_length=255, 
-                             help_text='Maximum 250 characters')
-    slug = models.SlugField(unique=True,
-                            help_text='Automatically generated from title')
-    description = models.TextField(blank=True)
-
-    class Meta:
-        ordering = ['title']
-        verbose_name_plural = 'Categories'
-
-    def __unicode__(self):
-        return self.title
-
-    def get_absolute_url(self):
-        return '/categories/%s' % self.slug
-
-    def live_entry_set(self):
-        from sb_blog.models import Entry
-        return self.entry_set.filter(status=Entry.LIVE_STATUS)
 
 class LiveEntryManager(models.Manager):
     def get_query_set(self):
@@ -49,7 +29,6 @@ class Entry(models.Model):
     enable_comments = models.BooleanField(default=True)
     featured = models.BooleanField(default=False)
     status = models.IntegerField(choices=STATUS_CHOICES, default=LIVE_STATUS)
-    categories = models.ManyToManyField(Category)
     tags = TagField()
 
     live = LiveEntryManager()
@@ -74,3 +53,6 @@ class Entry(models.Model):
                                           'month': self.pub_date.strftime('%m'),
                                           'day': self.pub_date.strftime('%d'),
                                           'slug': self.slug})
+
+    def get_tags(self):
+        return Tag.objects.get_for_object(self)
