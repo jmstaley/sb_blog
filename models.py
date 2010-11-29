@@ -46,9 +46,13 @@ class Entry(models.Model):
         ordering = ('-pub_date',)
 
     def save(self, force_insert=False, force_update=False):
-        self.body_html = markdown(self.body)
-        if self.excerpt:
-            self.excerpt_html = markdown(self.excerpt)
+        if getattr(settings, 'HTML_ENTRY', None):
+            self.body_html = self.body
+            self.excerpt_html = self.excerpt
+        else:
+            self.body_html = markdown(self.body)
+            if self.excerpt:
+                self.excerpt_html = markdown(self.excerpt)
         super(Entry, self).save(force_insert, force_update)
 
     def __unicode__(self):
