@@ -1,0 +1,9 @@
+{% extends 'sb_blog/base.html' %}
+{% block contenttitle %}Blog archive{% endblock %}
+{% block content %}
+  <ul>
+    {% for month in date_list %}
+      <li><a href="{{ month|date:'m' }}/">{{ month|date:'F' }}</a></li>
+    {% endfor %}
+  </ul>
+{% endblock %}

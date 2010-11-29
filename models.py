@@ -72,6 +72,7 @@ class EntryModerator(CommentModerator):
     auto_moderate_field = 'pub_date'
     moderate_after = 30
     email_notification = True
+    enable_field = 'enable_comments'
 
     def moderate(self, comment, content_object, request):
         already_moderated = super(EntryModerator, self).moderate(comment, content_object, request)

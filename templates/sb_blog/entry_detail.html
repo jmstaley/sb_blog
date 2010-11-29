@@ -1,0 +1,29 @@
+{% extends 'sb_blog/base.html' %}
+{% block title %}{{ object.title }}{% endblock %}
+{% block contenttitle %}{{ object.title }}{% endblock %}
+{% block content %}
+  <p>Author: {{ object.author.username }}</p>
+  {{ object.body_html|safe }}
+  <p class="tags">Tags: 
+  {% for tag in object.get_tags %}
+    <a href="/tags/{{ tag.name }}">{{ tag.name }}</a>
+  {% endfor %}
+
+  {% if object.enable_comments %}
+    {% load comments %}
+
+    {% get_comment_list for object as comment_list %}
+
+    <h3>Comments</h3>
+
+    {% for comment in comment_list %}
+      <p>On {{ comment.submit_date|date:"F j, Y" }}, {{ comment.name }} said: </p>
+      <blockquote>{{ comment|linebreaks }}</blockquote>
+    {% endfor %}
+
+    <h3>Post a comment</h3>
+
+    {% render_comment_form for object %}
+  {% endif %}
+
+{% endblock %}

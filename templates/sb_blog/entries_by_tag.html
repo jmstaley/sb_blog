@@ -1,0 +1,16 @@
+{% extends 'sb_blog/base.html' %}
+{% block title %}Entries by tag: {{ tag }} | {% endblock %}
+{% block contenttitle %}Entries for tag {{ tag }}{% endblock %}
+
+{% block content %}
+  {% for entry in object_list %}
+    <h3>{{ entry.title }}</h3>
+    <p>Published on {{ entry.pub_date|date:"F j, Y" }}</p>
+    {% if entry.excerpt_html %}
+      {{ entry.excerpt_html|safe }}
+    {% else %}
+      {{ entry.body_html|truncatewords_html:"50"|safe }}
+    {% endif %}
+    <p><a href="{{ entry.get_absolute_url }}">Read full entry</a></p>
+  {% endfor %}
+{% endblock %}
