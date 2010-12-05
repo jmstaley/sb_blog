@@ -7,7 +7,7 @@ current_site = Site.objects.get_current()
 class EntriesFeed(Feed):
     author_name = current_site.domain
     description = '%s blog entries feed' % current_site.domain
-    link = '/feeds/blog/'
+    link = '/feed/blog/'
     title = '%s : blog entries' % current_site.domain
 
     def items(self):
