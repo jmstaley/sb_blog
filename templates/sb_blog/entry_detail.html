@@ -17,8 +17,8 @@
     <h3>Comments</h3>
 
     {% for comment in comment_list %}
-      <p>On {{ comment.submit_date|date:"F j, Y" }}, {{ comment.name }} said: </p>
-      <blockquote>{{ comment|linebreaks }}</blockquote>
+      <p>On {{ comment.submit_date|date:"F j, Y" }}, {{ comment.name|escape }} said: </p>
+      <blockquote>{{ comment|escape|linebreaks }}</blockquote>
     {% endfor %}
 
     <h3>Post a comment</h3>
