@@ -53,6 +53,12 @@ class Entry(models.Model):
             self.body_html = markdown(self.body)
             if self.excerpt:
                 self.excerpt_html = markdown(self.excerpt)
+        if self.tags:
+            tags = []
+            for tag in self.tags.split(','):
+                tag = tag.strip()
+                tags.append(tag.replace(' ', '-'))
+            self.tags = ','.join(tags)
         super(Entry, self).save(force_insert, force_update)
 
     def __unicode__(self):
