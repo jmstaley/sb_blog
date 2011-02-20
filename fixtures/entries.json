@@ -1,0 +1,38 @@
+[
+  {
+    "pk": 2, 
+    "model": "sb_blog.entry", 
+    "fields": {
+      "body": "This is test entry 2", 
+      "excerpt_html": "<p>This is test entry 2</p>", 
+      "title": "Test Entry 2", 
+      "author": 1, 
+      "excerpt": "This is test entry 2", 
+      "body_html": "<p>This is test entry 2</p>", 
+      "featured": false, 
+      "status": 2, 
+      "enable_comments": true, 
+      "pub_date": "2011-02-20 19:28:45", 
+      "slug": "test-entry-2", 
+      "tags": "test,entry"
+    }
+  }, 
+  {
+    "pk": 1, 
+    "model": "sb_blog.entry", 
+    "fields": {
+      "body": "This is a test entry", 
+      "excerpt_html": "<p>This is a test entry</p>", 
+      "title": "Test Entry", 
+      "author": 1, 
+      "excerpt": "This is a test entry", 
+      "body_html": "<p>This is a test entry</p>", 
+      "featured": false, 
+      "status": 1, 
+      "enable_comments": true, 
+      "pub_date": "2011-02-20 19:28:19", 
+      "slug": "test-entry", 
+      "tags": "test,entry"
+    }
+  }
+]

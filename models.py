@@ -38,8 +38,8 @@ class Entry(models.Model):
     status = models.IntegerField(choices=STATUS_CHOICES, default=LIVE_STATUS)
     tags = TagField()
 
-    live = LiveEntryManager()
     objects = models.Manager()
+    live = LiveEntryManager()
 
     class Meta:
         verbose_name_plural = "Entries"
