@@ -12,7 +12,9 @@ Dependencies:
 
 Install the dependencies.
 
-Get copy of sbblog.
+Get copy of sbblog::
+
+    pip install django-sbblog
 
 Add following three lines to the INSTALLED_APPS section of your settings.py::
 
