@@ -1,6 +1,6 @@
 from django.conf.urls.defaults import *
 
-from sb_blog.models import Entry
+from sbblog.models import Entry
 
 entry_info_dict = {'queryset': Entry.live.all(),
                    'date_field': 'pub_date'}
@@ -22,6 +22,6 @@ urlpatterns = patterns('django.views.generic.date_based',
 )
 
 urlpatterns += patterns('',
-    (r'^$', 'sb_blog.views.entries_index', {}),
-    (r'^(?P<page>\d{1,3})/$', 'sb_blog.views.entries_index', {}, 'blog_entry_index'),
+    (r'^$', 'sbblog.views.entries_index', {}),
+    (r'^(?P<page>\d{1,3})/$', 'sbblog.views.entries_index', {}, 'blog_entry_index'),
 )

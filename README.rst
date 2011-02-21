@@ -12,18 +12,18 @@ Dependencies:
 
 Install the dependencies.
 
-Get copy of sb_blog.
+Get copy of sbblog.
 
 Add following three lines to the INSTALLED_APPS section of your settings.py::
 
     'django.contrib.comments',
     'tagging',
-    'sb_blog',
+    'sbblog',
 
 
 Add the following to the TEMPLATES section of your settings.py::
 
-    '<path to sb_blog>/templates'
+    '<path to sbblog>/templates'
 
 
 For spam protection get a key for Akismet from http://akismet.com/ and then add the key to your settings.py::
@@ -43,9 +43,9 @@ Now run::
 
 This will setup all the tables needed.  Now setup the urls needed.  Add the following to your urls.py::
 
-    (r'^tags/', include('sb_blog.urls.tags')),
+    (r'^tags/', include('sbblog.urls.tags')),
     (r'^comments/', include('django.contrib.comments.urls')),
-    (r'', include('sb_blog.urls.entries')),
+    (r'', include('sbblog.urls.entries')),
 
 
 Now it should be installed and ready to run.  

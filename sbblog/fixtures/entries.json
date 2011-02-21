@@ -1,7 +1,7 @@
 [
   {
     "pk": 2, 
-    "model": "sb_blog.entry", 
+    "model": "sbblog.entry", 
     "fields": {
       "body": "This is test entry 2", 
       "excerpt_html": "<p>This is test entry 2</p>", 
@@ -19,7 +19,7 @@
   }, 
   {
     "pk": 1, 
-    "model": "sb_blog.entry", 
+    "model": "sbblog.entry", 
     "fields": {
       "body": "This is a test entry", 
       "excerpt_html": "<p>This is a test entry</p>", 

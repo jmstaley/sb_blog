@@ -1,5 +1,5 @@
 from django.conf.urls.defaults import *
-from sb_blog.models import Entry
+from sbblog.models import Entry
 from tagging.models import Tag
 
 urlpatterns = patterns('',
@@ -7,6 +7,6 @@ urlpatterns = patterns('',
      {'queryset': Tag.objects.all()}),
     (r'^(?P<tag>[-\w]+)/$', 'tagging.views.tagged_object_list',
      {'queryset_or_model': Entry.live.all(),
-      'template_name': 'sb_blog/entries_by_tag.html'},
+      'template_name': 'sbblog/entries_by_tag.html'},
       'entries_by_tag'),
 )

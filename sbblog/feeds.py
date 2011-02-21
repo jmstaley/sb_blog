@@ -1,6 +1,6 @@
 from django.contrib.sites.models import Site
 from django.contrib.syndication.feeds import Feed
-from sb_blog.models import Entry
+from sbblog.models import Entry
 
 current_site = Site.objects.get_current()
 

@@ -1,7 +1,6 @@
 from django import template
 from django.db.models import get_model
 from tagging.models import Tag
-from sb_blog.models import Entry
 
 def do_latest_content(parser, token):
     bits = token.split_contents()
@@ -22,7 +21,7 @@ class LatestContentNode(template.Node):
         self.varname = varname
 
     def render(self, context):
-        context[self.varname] = self.model._default_manager.all()[:self.num]
+        context[self.varname] = self.model.live.all()[:self.num]
         return ''
 
 def do_all_tags(parser, token):
