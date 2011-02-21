@@ -55,5 +55,13 @@ setup(
     url = 'http://github.com/jmstaley/sb_blog',
     packages = packages,
     data_files = data_files,
-    requires=["django_tagging", "markdown"]
+    classifiers = ['Development Status :: 4 - Beta',
+                   'Environment :: Web Environment',
+                   'Framework :: Django',
+                   'Intended Audience :: Developers',
+                   'License :: OSI Approved :: MIT License',
+                   'Operating System :: OS Independent',
+                   'Programming Language :: Python',
+                   'Topic :: Utilities'],
+
 )
