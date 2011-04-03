@@ -20,9 +20,11 @@ class LiveEntryManager(models.Manager):
 class Entry(models.Model):
     LIVE_STATUS = 1
     DRAFT_STATUS = 2
+    APPROVE_STATUS = 3
     STATUS_CHOICES = (
         (LIVE_STATUS, 'Live'),
-        (DRAFT_STATUS, 'Draft')
+        (DRAFT_STATUS, 'Draft'),
+        (APPROVE_STATUS, 'To Approve'),
     )
 
     author = models.ForeignKey(User)
@@ -44,6 +46,9 @@ class Entry(models.Model):
     class Meta:
         verbose_name_plural = "Entries"
         ordering = ('-pub_date',)
+        permissions = (
+            ('can_publish', 'Can set the entry live'),
+        )
 
     def save(self, force_insert=False, force_update=False):
         if getattr(settings, 'HTML_ENTRY', None):
@@ -60,6 +65,12 @@ class Entry(models.Model):
                 tags.append(tag.replace(' ', '-'))
             self.tags = ','.join(tags)
         super(Entry, self).save(force_insert, force_update)
+
+    def clean(self):
+        from django.core.exceptions import ValidationError
+        can_publish = self.author.has_perm('sbblog.can_publish')
+        if not can_publish and self.status == Entry.LIVE_STATUS:
+            raise ValidationError('You don\'t have permissons to set entries live, please to "To Approve"')
 
     def __unicode__(self):
         return self.title
