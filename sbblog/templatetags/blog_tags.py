@@ -1,6 +1,8 @@
+import operator
 from django import template
 from django.db.models import get_model
 from tagging.models import Tag
+from sbblog.models import Entry
 
 def do_latest_content(parser, token):
     bits = token.split_contents()
@@ -30,9 +32,11 @@ def do_all_tags(parser, token):
 class BlogTags(template.Node):
     def render(self, context):
         context['all_tags_list'] = Tag.objects.all()
+        tags = Tag.objects.usage_for_model(Entry, counts=True)
+        tags.sort(key=operator.attrgetter('count'), reverse=True)
+        context['top_tags_list'] = tags[:10]
         return ''
 
 register = template.Library()
 register.tag('get_latest_content', do_latest_content)
 register.tag('get_all_tags', do_all_tags)
-
